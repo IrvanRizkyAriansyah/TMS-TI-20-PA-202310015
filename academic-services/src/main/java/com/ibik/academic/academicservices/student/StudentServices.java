@@ -1,4 +1,4 @@
-package com.ibik.academicservices.academicservices.student;
+package com.ibik.academic.academicservices.student;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

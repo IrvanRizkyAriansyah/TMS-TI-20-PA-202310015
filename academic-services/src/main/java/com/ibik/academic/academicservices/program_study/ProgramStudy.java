@@ -1,4 +1,4 @@
-package com.ibik.academicservices.academicservices.program_study;
+package com.ibik.academic.academicservices.program_study;
 
 import java.io.Serializable;
 

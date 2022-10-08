@@ -1,4 +1,4 @@
-package com.ibik.academicservices.academicservices.student;
+package com.ibik.academic.academicservices.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
