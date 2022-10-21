@@ -28,13 +28,40 @@ public class ProgramStudyController {
     @Autowired
     private ProgramStudyServices programStudyServices;
 
+    // @PostMapping()
+    // // public ProgramStudy postPrograms(@RequestBody ProgramStudy programStudy){
+    // public ResponseEntity<ResponseData<ProgramStudy>> postProgramStudy (@Valid @RequestBody ProgramStudy programStudy, Errors errors) {
+    //     ResponseData<ProgramStudy> responseData = new ResponseData<>();
+        
+    //     if(errors.hasErrors()){
+    //         for(ObjectError error: errors.getAllErrors()){
+    //             //System.out.println(error.getDefaultMessage());
+    //             responseData.getMessage().add(error.getDefaultMessage());
+    //         }
+
+    //         responseData.setResult(false);
+    //         responseData.setData(null);
+
+    //     }
+
+    //     responseData.setResult(true);
+    //     List<ProgramStudy> value = new ArrayList<>();
+    //     value.add(programStudyServices.save(programStudy));
+    //     responseData.setData(value);
+    //     return ResponseEntity.ok(responseData);
+    //     //return studentServices.save(student);
+    // }//untuk memasukan data
+    //     //     return programStudyServices.save(programStudy);
+    // // }//untuk memasukan data
+
     @PostMapping()
-    // public ProgramStudy postPrograms(@RequestBody ProgramStudy programStudy){
-    public ResponseEntity<ResponseData<ProgramStudy>> posProgramStudy(@Valid @RequestBody ProgramStudy programstudy,
-            Errors errors) {
+    // public Student postStudent(@Valid @RequestBody Student student, Errors errors){
+    public ResponseEntity<ResponseData<ProgramStudy>> postStudent (@Valid @RequestBody ProgramStudy programStudy, Errors errors) {
         ResponseData<ProgramStudy> responseData = new ResponseData<>();
-        if (errors.hasErrors()) {
-            for (ObjectError error : errors.getAllErrors()) {
+        
+        if(errors.hasErrors()){
+            for(ObjectError error: errors.getAllErrors()){
+                //System.out.println(error.getDefaultMessage());
                 responseData.getMessage().add(error.getDefaultMessage());
             }
 
@@ -42,16 +69,16 @@ public class ProgramStudyController {
             responseData.setData(null);
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+            //throw new RuntimeException("Validation Error");
         }
 
         responseData.setResult(true);
         List<ProgramStudy> value = new ArrayList<>();
-        value.add(programStudyServices.save(programstudy));
+        value.add(programStudyServices.save(programStudy));
         responseData.setData(value);
         return ResponseEntity.ok(responseData);
-    }
-        //     return programStudyServices.save(programStudy);
-    // }//untuk memasukan data
+        //return studentServices.save(student);
+    }//untuk memasukan data
 
     @GetMapping
     // public Iterable<ProgramStudy> fetchPrograms(){

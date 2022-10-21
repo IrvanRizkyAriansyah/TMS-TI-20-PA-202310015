@@ -1,1 +1,14 @@
-D:\202310015\microservice\academic-services\src\main\java\com\ibik\academic\academicservices\AcademicServicesApplication.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\program_study\ProgramStudy.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\program_study\ProgramStudyController.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\program_study\ProgramStudyRepo.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\AcademicServicesApplication.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\programs\ProgramsRepo.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\programs\ProgramsServices.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\program_study\ProgramStudyServices.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\student\Student.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\dto\ResponseData.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\student\StudentServices.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\student\StudentRepo.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\programs\ProgramsController.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\programs\Programs.java
+C:\Users\Irvan\Documents\Kampus\Semester 5\Microservices\TMS-TI-20-PA-202310015\academic-services\src\main\java\com\ibik\academic\academicservices\student\StudentController.java

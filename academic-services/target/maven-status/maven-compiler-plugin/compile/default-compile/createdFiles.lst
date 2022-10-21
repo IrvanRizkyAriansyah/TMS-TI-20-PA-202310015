@@ -1,1 +1,14 @@
+com\ibik\academic\academicservices\student\StudentServices.class
+com\ibik\academic\academicservices\student\StudentController.class
+com\ibik\academic\academicservices\program_study\ProgramStudyController.class
 com\ibik\academic\academicservices\AcademicServicesApplication.class
+com\ibik\academic\academicservices\dto\ResponseData.class
+com\ibik\academic\academicservices\programs\ProgramsServices.class
+com\ibik\academic\academicservices\student\StudentRepo.class
+com\ibik\academic\academicservices\programs\ProgramsRepo.class
+com\ibik\academic\academicservices\program_study\ProgramStudy.class
+com\ibik\academic\academicservices\program_study\ProgramStudyServices.class
+com\ibik\academic\academicservices\programs\ProgramsController.class
+com\ibik\academic\academicservices\student\Student.class
+com\ibik\academic\academicservices\programs\Programs.class
+com\ibik\academic\academicservices\program_study\ProgramStudyRepo.class
