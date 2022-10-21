@@ -56,23 +56,86 @@ public class StudentController {
     }//untuk memasukan data
 
     @GetMapping
-    public Iterable<Student> fetchPrograms(){
-        return studentServices.findAll();
+    //public Iterable<Student> fetchPrograms(){
+    public ResponseEntity<ResponseData<Student>> fetchStudent() {
+        ResponseData<Student> responseData = new ResponseData<>();
+        try {
+            responseData.setResult(true);
+            List<Student> value = (List<Student>) studentServices.findAll();
+            responseData.setData(value);
+
+            return ResponseEntity.ok(responseData);
+        } catch (Exception ex) {
+            responseData.setResult(false);
+            responseData.getMessage().add(ex.getMessage());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
     }//mengambil seluruh data
 
     @GetMapping("/{id}")
-    public Student fetchProgramsById(@PathVariable("id") int id){
-        return studentServices.findOne(id);
+    //public Student fetchProgramsById(@PathVariable("id") int id){
+    public ResponseEntity<ResponseData<Student>> fetchStudentById(@PathVariable("id") int id) {
+        ResponseData<Student> responseData = new ResponseData<>();
+        try {
+            responseData.setResult(true);
+            List<Student> value = new ArrayList<>();
+            value.add(studentServices.findOne(id));
+            responseData.setData(value);
+
+            return ResponseEntity.ok(responseData);
+        } catch (Exception ex) {
+            responseData.setResult(false);
+            responseData.getMessage().add(ex.getMessage());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
     }//mengambil data by id
 
     @PutMapping
-    public Student updatePrograms(@RequestBody Student student){
-        return studentServices.save(student);
+    public ResponseEntity<ResponseData<Student>> updateStudent(@Valid @RequestBody Student students, Errors errors) {
+
+        ResponseData<Student> responseData = new ResponseData<>();
+        if (errors.hasErrors()) {
+            for (ObjectError error : errors.getAllErrors()) {
+                responseData.getMessage().add(error.getDefaultMessage());
+            }
+            responseData.setResult(false);
+            responseData.setData(null);
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        try {
+            responseData.setResult(true);
+            List<Student> value = new ArrayList<>();
+            value.add(studentServices.update(students));
+            responseData.setData(value);
+
+            return ResponseEntity.ok(responseData);
+        } catch (Exception ex) {
+            responseData.getMessage().add("ID is Required");
+            responseData.setResult(false);
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
     }//update programs
 
 
     @DeleteMapping("/{id}")
-    public void deleteProgramsById(@PathVariable("id") int id){
-        studentServices.removoOne(id);
+    //public void deleteProgramsById(@PathVariable("id") int id){
+    public ResponseEntity<ResponseData<Void>> deleteStudentById(@PathVariable("id") int id) {
+        ResponseData<Void> responseData = new ResponseData<>();
+        try {
+            studentServices.removeOne(id);
+            responseData.setResult(true);
+            responseData.getMessage().add("Successfully Remove");
+
+            return ResponseEntity.ok(responseData);
+        } catch (Exception ex) {
+            responseData.setResult(false);
+            responseData.getMessage().add(ex.getMessage());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
     }
 }
