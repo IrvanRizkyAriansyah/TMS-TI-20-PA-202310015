@@ -1,15 +1,21 @@
 package com.ibik.academic.academicservices.student;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+
+import com.ibik.academic.academicservices.courses.Courses;
 
 @Entity
 @Table(name = "Student")
@@ -20,6 +26,14 @@ public class Student implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToMany
+    @JoinTable(
+        name = "student_rel_courses",
+        joinColumns = @JoinColumn(name = "student_id"),
+        inverseJoinColumns = @JoinColumn(name="course_id")
+    )
+    private Set<Courses> courses;
 
     @Column(length = 15)
     @NotEmpty(message = "NPM is required")
