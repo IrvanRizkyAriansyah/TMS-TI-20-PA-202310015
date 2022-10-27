@@ -11,11 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import com.ibik.academic.academicservices.courses.Courses;
+import com.ibik.academic.academicservices.program_study.ProgramStudy;
+import com.ibik.academic.academicservices.programs.Programs;
 
 @Entity
 @Table(name = "Student")
@@ -26,14 +29,6 @@ public class Student implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ManyToMany
-    @JoinTable(
-        name = "student_rel_courses",
-        joinColumns = @JoinColumn(name = "student_id"),
-        inverseJoinColumns = @JoinColumn(name="course_id")
-    )
-    private Set<Courses> courses;
 
     @Column(length = 15)
     @NotEmpty(message = "NPM is required")
@@ -49,24 +44,39 @@ public class Student implements Serializable{
     @NotEmpty(message = "Lastname is required")
     private String lastname;
 
-    @Min(value = 1, message = "Program is required")
-    private int program_id;
+    //@Min(value = 1, message = "Program is required")
+    // private int program_id;
+    @ManyToOne
+    @JoinColumn(name = "program_id")
+    private Programs programs;
 
-    @Min(value = 1, message = "Department is required")
-    private int department_id;
+    // @Min(value = 1, message = "Department is required")
+    // private int department_id;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private ProgramStudy programStudy;
+
+    @ManyToMany
+    @JoinTable(
+        name = "student_rel_courses",
+        joinColumns = @JoinColumn(name = "student_id"),
+        inverseJoinColumns = @JoinColumn(name="course_id")
+    )
+    private Set<Courses> courses;
 
     public Student() {
     }
 
-    public Student(int id, String npm, String firstname, String middlename, String lastname, int program_id,
-            int department_id) {
+    public Student(int id, String npm, String firstname, String middlename, String lastname, Programs programs,
+        ProgramStudy programStudy, Set<Courses> courses) {
         this.id = id;
         this.npm = npm;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
-        this.program_id = program_id;
-        this.department_id = department_id;
+        this.programs = programs;
+        this.programStudy = programStudy;
+        this.courses = courses;
     }
 
     public static long getSerialversionuid() {
@@ -113,20 +123,29 @@ public class Student implements Serializable{
         this.lastname = lastname;
     }
 
-    public int getProgram_id() {
-        return program_id;
+    public Programs getPrograms() {
+        return programs;
     }
 
-    public void setProgram_id(int program_id) {
-        this.program_id = program_id;
+    public void setPrograms(Programs programs) {
+        this.programs = programs;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public ProgramStudy getProgramStudy() {
+        return programStudy;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setProgramStudy(ProgramStudy programStudy) {
+        this.programStudy = programStudy;
     }
+
+    public Set<Courses> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Courses> courses) {
+        this.courses = courses;
+    }
+    
 }
 

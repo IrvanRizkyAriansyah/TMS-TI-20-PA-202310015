@@ -22,8 +22,9 @@ public class StudentServices {
         result.setMiddlename(student.getMiddlename());
         result.setLastname(student.getLastname());
         result.setNpm(student.getNpm());
-        result.setProgram_id(student.getProgram_id());
-        result.setDepartment_id(student.getDepartment_id());
+        result.setPrograms(student.getPrograms());
+        result.setProgramStudy(student.getProgramStudy());
+        result.setCourses(student.getCourses());
 
         return result;
     }
