@@ -40,4 +40,8 @@ public class StudentServices {
     public void removeOne(int id){
         studentRepo.deleteById(id);
     }
+
+    public Iterable<Student> findStudentByName(String name){
+        return studentRepo.findStudentByName("%"+name+"%");
+    }
 }

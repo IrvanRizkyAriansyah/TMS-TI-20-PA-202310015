@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ibik.academic.academicservices.dto.ResponseData;
+import com.ibik.academic.academicservices.dto.SearchData;
+
+import io.micrometer.core.instrument.search.Search;
 
 
 @RestController
@@ -28,6 +31,24 @@ public class StudentController {
     
     @Autowired
     private StudentServices studentServices;
+
+    @PostMapping("/search")
+    public ResponseEntity<ResponseData<Student>> getStudentByName(@RequestBody SearchData searchData) {
+        ResponseData<Student> responseData = new ResponseData<>();
+        try {
+            Iterable<Student> values = studentServices.findStudentByName(searchData.getSearchKey());
+            responseData.setResult(true);
+            responseData.setMessage(null);
+            responseData.setData(values);
+            return ResponseEntity.ok(responseData);
+        } catch (Exception e) {
+            List<String> message = new ArrayList<>();
+            message.add(e.getMessage());
+            responseData.setData(null);
+            responseData.setResult(false);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+    }
 
     @PostMapping()
     // public Student postStudent(@Valid @RequestBody Student student, Errors errors){
