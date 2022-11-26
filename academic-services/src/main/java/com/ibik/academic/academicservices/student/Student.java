@@ -13,7 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
+// import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import com.ibik.academic.academicservices.courses.Courses;
@@ -64,11 +64,19 @@ public class Student implements Serializable{
     )
     private Set<Courses> courses;
 
+    @Column
+    @NotEmpty(message = "Email is required")
+    private String email;
+
+    @Column(columnDefinition = "DATE")
+    @NotEmpty(message = "Birthdate is required")
+    private String birthdate;
+
     public Student() {
     }
 
     public Student(int id, String npm, String firstname, String middlename, String lastname, Programs programs,
-        ProgramStudy programStudy, Set<Courses> courses) {
+        ProgramStudy programStudy, Set<Courses> courses, String email, String birthdate) {
         this.id = id;
         this.npm = npm;
         this.firstname = firstname;
@@ -77,6 +85,8 @@ public class Student implements Serializable{
         this.programs = programs;
         this.programStudy = programStudy;
         this.courses = courses;
+        this.email = email;
+        this.birthdate = birthdate;
     }
 
     public static long getSerialversionuid() {
@@ -146,6 +156,21 @@ public class Student implements Serializable{
     public void setCourses(Set<Courses> courses) {
         this.courses = courses;
     }
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
 }
 
