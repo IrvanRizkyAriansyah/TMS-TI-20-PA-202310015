@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ibik.academic.academicservices.dto.Auth;
 import com.ibik.academic.academicservices.dto.ResponseData;
 import com.ibik.academic.academicservices.dto.SearchData;
 
@@ -156,6 +157,31 @@ public class StudentController {
             responseData.setResult(false);
             responseData.getMessage().add(ex.getMessage());
 
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity<ResponseData<Student>> getStudentAuth(@RequestBody Auth auth) {
+        ResponseData<Student> responseData = new ResponseData<>();
+
+        System.out.print(auth.getEmail());
+        System.out.print(auth.getPassword());
+
+        try {
+            Iterable<Student> values = studentServices.findAuth(auth.getEmail(),
+            auth.getPassword());
+            responseData.setResult(true);
+            responseData.setMessage(null);
+            responseData.setData(values);
+            return ResponseEntity.ok(responseData);
+
+        } catch (Exception e) {
+            List<String> message = new ArrayList<>();
+            message.add(e.getMessage());
+            responseData.setMessage(message);
+            responseData.setData(null);
+            responseData.setResult(false);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
     }
